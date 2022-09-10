@@ -41,8 +41,11 @@ export default class PostsController {
     })
     const baseurl=  Env.get('BASE_URL');
     try {
+
       let post = new Post();
-      post.title = request.input('title');
+      const title = request.input('title');
+      post.title = title;
+      post.slug = new Date().getTime().toString();
       post.body = he.encode(request.input('body'));
       post.category_id = +request.input('category')
       post.image = baseurl+'/uploads/'+coverImage.fileName;
