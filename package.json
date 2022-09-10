@@ -38,7 +38,6 @@
   },
   "devDependencies": {
     "@adonisjs/assembler": "^5.8.1",
-    "@adonisjs/lucid-slugify": "^2.2.1",
     "@adonisjs/session": "^6.4.0",
     "@babel/core": "^7.19.0",
     "@japa/preset-adonis": "^1.2.0",
