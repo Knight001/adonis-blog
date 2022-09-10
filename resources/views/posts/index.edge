@@ -1,0 +1,109 @@
+@layout('layouts.default')
+
+@section('content')
+<div class="row">
+  <!-- Blog entries-->
+  <div class="col-lg-7">
+      <!-- Nested row for non-featured blog posts-->
+     @if(posts.length > 0)
+      <div class="row">
+          <div class="col-lg-12">
+              <!-- Blog post-->
+              @each(post in posts)
+              <div class="card mb-5">
+                  <a href="#!"><img class="card-img-top" src={{post.image}} alt="..." /></a>
+                  <div class="card-body">
+                      <div class="small text-muted">{{post.created_at}}</div>
+                      <h2 class="card-title h4">{{post.title}}</h2>
+                      <p class="card-text">{{ truncate(he.decode(post.body),255,'....')}}</p>
+                      <a class="btn btn-primary" href="/posts/{{post.slug}}">Read more →</a>
+                  </div>
+              </div>
+              @endeach
+          </div>
+
+      </div>
+
+      <!-- Pagination-->
+      <nav aria-label="Pagination">
+          <hr class="my-0" />
+          <ul class="pagination justify-content-center my-4">
+            @each(anchor in posts.getUrlsForRange(1, posts.lastPage))
+              <li class="page-item" aria-current="page"><a class="page-link" href="{{ anchor.url }}">{{ anchor.page }}</a></li>
+            @endeach
+          </ul>
+      </nav>
+
+  @else
+  <div class="">
+     <h1>No Posts</h1>
+  </div>
+
+  @endif
+
+  </div>
+  <!-- Side widgets-->
+  <div class="col-lg-5">
+      <!-- Search widget-->
+      <div class="card mb-4">
+          <div class="card-header">Search</div>
+          <div class="card-body">
+              <div class="input-group">
+                  <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
+                  <button class="btn btn-primary" id="button-search" type="button">Go!</button>
+              </div>
+          </div>
+      </div>
+      <!-- Categories widget-->
+      <div class="card mb-4">
+          <div class="card-header"><a href="/categories" class="btn btn-info btn-sm float-right">Categories</a></div>
+          <div class="card-body">
+              <div class="row">
+                 @each(category in categories)
+                  <div class="col-sm-6">
+                      <ul class="list-unstyled mb-4">
+                          <li><a href="#!">{{category.name}}</a></li>
+                      </ul>
+                  </div>
+                  @endeach
+              </div>
+          </div>
+      </div>
+      @if (auth.user)
+      <!-- Side widget-->
+      <div class="card mb-4">
+          <div class="card-header">Add Post</div>
+          <div class="card-body">
+              <form method="POST" action="/posts" enctype="multipart/form-data">
+                <label for="" class="form-label">Post Title</label>
+                <div class="input-group mb-4">
+                  <input class="form-control" type="text" placeholder="Enter Post Title" aria-label="Enter Post Title..." name="title"/>
+              </div>
+              <label for="" class="form-label">Category</label>
+              <div class="input-group mb-4">
+                <select name="category" id="category" class="form-control">
+                  <option value="">Select Category</option>
+                  @each(category in categories)
+                  <option value={{category.id}}>{{category.name}}</option>
+                  @endeach
+                </select>
+            </div>
+              <label for="" class="form-label">Post Content</label>
+              <div class="input-group mb-4">
+                <textarea cols="6" name="body" rows="3" class="form-control" placeholder="Enter Post Body"></textarea>
+            </div>
+            <label for="" class="form-label">Post Image</label>
+            <div class="input-group mb-4">
+              <input type="file" name="image" id="image" class="form-control"/>
+          </div>
+          <div class="input-group">
+            <input type="submit" value="Submit" class="btn btn-primary">
+        </div>
+              </form>
+          </div>
+      </div>
+      @endif
+  </div>
+</div>
+
+@endsection

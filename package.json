@@ -1,0 +1,92 @@
+{
+  "name": "adonis-blog",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "dev": "node ace serve --watch",
+    "build": "node ace build --production",
+    "start": "node server.js",
+    "lint": "eslint . --ext=.ts",
+    "format": "prettier --write ."
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:adonis/typescriptApp",
+      "prettier"
+    ],
+    "plugins": [
+      "prettier"
+    ],
+    "rules": {
+      "prettier/prettier": [
+        "error"
+      ]
+    }
+  },
+  "eslintIgnore": [
+    "build"
+  ],
+  "prettier": {
+    "trailingComma": "es5",
+    "semi": false,
+    "singleQuote": true,
+    "useTabs": false,
+    "quoteProps": "consistent",
+    "bracketSpacing": true,
+    "arrowParens": "always",
+    "printWidth": 100
+  },
+  "devDependencies": {
+    "@adonisjs/assembler": "^5.8.1",
+    "@adonisjs/lucid-slugify": "^2.2.1",
+    "@adonisjs/session": "^6.4.0",
+    "@babel/core": "^7.19.0",
+    "@japa/preset-adonis": "^1.2.0",
+    "@japa/runner": "^2.1.3",
+    "@symfony/webpack-encore": "^3.1.0",
+    "adonis-preset-ts": "^2.1.0",
+    "babel-preset-env": "^1.7.0",
+    "bootstrap": "^5.2.1",
+    "eslint": "^8.23.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-adonis": "^2.1.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "gulp": "^4.0.2",
+    "gulp-babel": "^8.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^2.0.0",
+    "gulp-sass": "^5.1.0",
+    "gulp-sourcemaps": "^3.0.0",
+    "gulp-uglify": "^3.0.2",
+    "jquery-slim": "^3.0.0",
+    "pino-pretty": "^9.1.0",
+    "prettier": "^2.7.1",
+    "sass": "^1.54.9",
+    "turbolinks": "^5.2.0",
+    "typescript": "~4.6",
+    "youch": "^3.2.2",
+    "youch-terminal": "^2.1.5"
+  },
+  "dependencies": {
+    "@adonisjs/ace": "^11.3.1",
+    "@adonisjs/auth": "^8.2.2",
+    "@adonisjs/core": "^5.8.6",
+    "@adonisjs/lucid": "^18.1.0",
+    "@adonisjs/repl": "^3.1.11",
+    "@adonisjs/shield": "^7.1.0",
+    "@adonisjs/view": "^6.2.0",
+    "cloudinary": "^1.31.0",
+    "feather-icons": "^4.29.0",
+    "he": "^1.2.0",
+    "luxon": "^3.0.3",
+    "merge2": "^1.4.1",
+    "pg": "^8.8.0",
+    "phc-argon2": "^1.1.3",
+    "proxy-addr": "^2.0.7",
+    "reflect-metadata": "^0.1.13",
+    "source-map-support": "^0.5.21"
+  },
+  "overrides": {
+    "graceful-fs": "^4.2.10"
+  }
+}

@@ -1,0 +1,83 @@
+@layout('layouts.default')
+@section('content')
+<div class="row">
+  <div class="col-sm-8">
+    <div class="card mb-4">
+      <div class="card-header">List Of Users</div>
+      <div class="card-body">
+    <table class="table table-bordered">
+      <thead>
+        <tr>
+          <th scope="col">Username</th>
+          <th scope="col">Email</th>
+          <th scope="col">Created</th>
+          <th></th>
+        </tr>
+      </thead>
+      <tbody>
+        @if(users.length > 0)
+        @each(user in users)
+        <tr>
+          <td>{{user.username}}</td>
+          <td>{{user.email}}</td>
+          <td>{{user.created_at}}</td>
+          <td><a href="#" class="btn btn-info btn-sm"><i class="fa-light fa-pen"></i></a></td>
+        </tr>
+        @endeach
+        @else
+        <tr>
+          <td colspan="5">No Users</td>
+        </tr>
+        @endif
+      </tbody>
+    </table>
+      </div>
+    </div>
+  </div>
+  <div class="col-sm-4">
+    <div class="card mb-4">
+      <div class="card-header">Create New User</div>
+      <div class="card-body">
+          <form action="{{ route('auth.register') }}" method="POST">
+            <div class="row">
+              <div class="form-group mb-4">
+                <label> Username </label>
+                  <input type="text" name="username" class="form-control" value="{{ flashMessages.get('username') ?? '' }}" />
+                  @if (flashMessages.has('errors.username'))
+                    <small style="color: red;">
+                      {{ flashMessages.get('errors.username') }}
+                    </small>
+                  @endif
+
+              </div>
+              <div class="form-group mb-4">
+              <label>Email </label>
+                <input type="email" name="email" class="form-control" value="{{ flashMessages.get('email') ?? '' }}" />
+                @if (flashMessages.has('errors.email'))
+                  <small style="color: red;">
+                    {{ flashMessages.get('errors.email') }}
+                  </small>
+                @endif
+
+              </div>
+              <div class="form-group mb-4">
+                <label>
+                  Password</label>
+                  <input type="password" class="form-control" name="password" />
+                  @if (flashMessages.has('errors.password'))
+                    <small style="color: red;">
+                      {{ flashMessages.get('errors.password') }}
+                    </small>
+                  @endif
+
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-md">Register</button>
+          </form>
+        </div>
+      </div>
+  </div>
+</div>
+
+@endsection
+

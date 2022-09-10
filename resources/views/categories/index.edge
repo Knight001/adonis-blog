@@ -1,0 +1,44 @@
+@layout('layouts.default')
+
+@section('content')
+<div class="row">
+  <!-- Blog entries-->
+
+  <!-- Side widgets-->
+  <div class="col-lg-8">
+    @if (auth.user)
+      <!-- Search widget-->
+      <div class="card mb-4">
+          <div class="card-header">New Category</div>
+          <div class="card-body">
+            <form action="/categories" method="POST">
+              {{--  {{ csrfField() }}  --}}
+              <div class="input-group">
+                  <input class="form-control" name="name" type="text" placeholder="Enter Category Name..." aria-label="Enter Category Name..." />
+                  <input type="submit" value="Submit" class="btn btn-primary">
+              </div>
+            </form>
+          </div>
+      </div>
+      @endif
+      <!-- Categories widget-->
+      <div class="card mb-4">
+          <div class="card-header">Categories</div>
+          <div class="card-body">
+              <div class="row">
+                <ul class="list-unstyled mb-0">
+                 @each(category in categories)
+                 <div class="col-sm-6 mb-4">
+                  <li><a href="#!">{{category.name}}</a></li>
+                </div>
+                 @endeach
+                </ul>
+              </div>
+          </div>
+      </div>
+      <!-- Side widget-->
+
+  </div>
+</div>
+
+@endsection
