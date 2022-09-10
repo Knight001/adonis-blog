@@ -88,5 +88,6 @@
   },
   "overrides": {
     "graceful-fs": "^4.2.10"
-  }
+  },
+  "start": "ENV_SILENT=true node build/server.js"
 }
