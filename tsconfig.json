@@ -33,7 +33,6 @@
       "@adonisjs/shield",
       "@japa/preset-adonis/build/adonis-typings",
       "@adonisjs/lucid",
-      "@adonisjs/lucid-slugify",
       "@adonisjs/auth"
     ]
   }
