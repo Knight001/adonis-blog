@@ -2,9 +2,13 @@
  import { schema, rules } from '@ioc:Adonis/Core/Validator'
 import Database from '@ioc:Adonis/Lucid/Database';
 import User from "App/Models/User";
+import auth from 'Config/auth';
 
 export default class AuthController {
-  public async registerShow({ view }: HttpContextContract) {
+  public async registerShow({response,  view }: HttpContextContract) {
+    if(!auth){
+      return response.redirect('/')
+    }
     //get users and paginate
     const users = await Database.from('users').paginate(1, 10)
     return view.render('auth/register', {

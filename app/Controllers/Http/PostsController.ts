@@ -12,7 +12,7 @@ export default class PostsController {
   async index({request, view}){
     const page = request.input('page', 1)
     const limit = request.input('limit', 10)
-    const posts = await Database.from('posts').paginate(page, limit)
+    const posts = await Database.from('posts').orderBy('id', 'desc').paginate(page, limit)
     const categories = await Category.all();
     posts.baseUrl('/')
     return view.render("posts.index",{
