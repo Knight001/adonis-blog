@@ -20,10 +20,20 @@
 
 import Route from '@ioc:Adonis/Core/Route'
 
+Route.group(() => {
+  Route.get('delete/:id', "PostsController.delete");
+  Route.post("posts", "PostsController.store");
+  Route.post("posts/:id", "PostsController.update");
+  Route.post("categories", "CategoriesController.store");
+  Route.get('logout', 'AuthController.logout').as('auth.logout')
+  Route.get('users', 'AuthController.registerShow').as('auth.register.show')
+  Route.post('register', 'AuthController.register').as('auth.register')
+}).middleware(["auth"]);
+
 Route.get('/', "PostsController.index")
 Route.get('/posts', "PostsController.index")
-Route.post("posts", "PostsController.store");
-Route.get('posts/:slug', 'PostsController.show')
+Route.get('posts/:slug', 'PostsController.show');
+
 
 
 Route.get('/about', "AboutsController.index")
@@ -32,10 +42,7 @@ Route.get('/contact', "ContactsController.index")
 
 
 Route.get('/categories', "CategoriesController.index")
-Route.post("categories", "CategoriesController.store");
 
-Route.get('users', 'AuthController.registerShow').as('auth.register.show')
-Route.post('register', 'AuthController.register').as('auth.register') // ++
+Route.post('login', 'AuthController.login').as('auth.login')
 Route.get('login', 'AuthController.loginShow').as('auth.login.show')
-Route.post('login', 'AuthController.login').as('auth.login')          // ++
-Route.get('logout', 'AuthController.logout').as('auth.logout')
+

@@ -17,6 +17,9 @@
                       <h2 class="card-title h4">{{post.title}}</h2>
                       <p class="card-text">{{ truncate(he.decode(post.body),255,'....')}}</p>
                       <a class="btn btn-primary" href="/posts/{{post.slug}}">Read more →</a>
+                      @if(auth.user)
+                      <a class="btn btn-danger" href="/delete/{{post.id}}">Delete</a>
+                      @endif
                   </div>
               </div>
               @endeach

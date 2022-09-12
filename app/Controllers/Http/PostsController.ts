@@ -5,6 +5,7 @@ import Post from "App/Models/Post";
 import Application from '@ioc:Adonis/Core/Application'
 import Env from '@ioc:Adonis/Core/Env'
 import Database from '@ioc:Adonis/Lucid/Database'
+import { Exception } from "@adonisjs/core/build/standalone";
 var he = require('he');
 
 
@@ -52,7 +53,7 @@ export default class PostsController {
       await post.save();
       return response.redirect('/');
     } catch (e) {
-      return e
+      throw new Exception(e, 500)
     }
 
   }
@@ -62,11 +63,31 @@ export default class PostsController {
 
     const posts = await Database.from('posts').paginate(1, 5);
     const post = await Post.query().where('slug', params.slug).first()
+    const categories = await Category.all();
     return view.render('posts.show', {
       post,
       posts,
+      he,
+      categories: categories,
       title: "Single Post"
     })
+  }
+
+
+  async update({params, request, response}){
+    const post = await Post.findOrFail(params.id);
+    post.title = request.input('title');
+    post.category_id = request.input('category');
+    post.body = request.input('body');
+    await post.save()
+    return response.redirect(`/posts/${post.slug}`);
+
+  }
+
+  async delete({params, request, response}){
+    const user = await Post.findOrFail(params.id)
+    await user.delete()
+    return response.redirect('/');
   }
 
 }
