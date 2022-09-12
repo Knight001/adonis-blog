@@ -84,7 +84,7 @@ export default class PostsController {
 
   }
 
-  async delete({params, request, response}){
+  async delete({params, response}){
     const user = await Post.findOrFail(params.id)
     await user.delete()
     return response.redirect('/');
