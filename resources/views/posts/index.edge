@@ -16,9 +16,9 @@
                       <div class="small text-muted">{{post.created_at}}</div>
                       <h2 class="card-title h4">{{post.title}}</h2>
                       <p class="card-text">{{ truncate(he.decode(post.body),255,'....')}}</p>
-                      <a class="btn btn-primary" href="/posts/{{post.slug}}">Read more →</a>
+                      <a class="btn btn-primary btn-sm" href="/posts/{{post.slug}}">Read more →</a>
                       @if(auth.user)
-                      <a class="btn btn-danger" href="/delete/{{post.id}}">Delete</a>
+                      <a class="btn btn-danger btn-sm" href="/delete/{{post.id}}"><i class="fa-solid fa-trash"></i> Delete</a>
                       @endif
                   </div>
               </div>
@@ -48,7 +48,7 @@
   <!-- Side widgets-->
   <div class="col-lg-5">
       <!-- Search widget-->
-      <div class="card mb-4">
+      {{--  <div class="card mb-4">
           <div class="card-header">Search</div>
           <div class="card-body">
               <div class="input-group">
@@ -56,28 +56,15 @@
                   <button class="btn btn-primary" id="button-search" type="button">Go!</button>
               </div>
           </div>
-      </div>
-      <!-- Categories widget-->
-      <div class="card mb-4">
-          <div class="card-header"><a href="/categories" class="btn btn-info btn-sm float-right">Categories</a></div>
-          <div class="card-body">
-              <div class="row">
-                 @each(category in categories)
-                  <div class="col-sm-6">
-                      <ul class="list-unstyled mb-4">
-                          <li><a href="#!">{{category.name}}</a></li>
-                      </ul>
-                  </div>
-                  @endeach
-              </div>
-          </div>
-      </div>
+      </div>  --}}
+
       @if (auth.user)
       <!-- Side widget-->
       <div class="card mb-4">
           <div class="card-header">Add Post</div>
           <div class="card-body">
               <form method="POST" action="/posts" enctype="multipart/form-data">
+
                 <label for="" class="form-label">Post Title</label>
                 <div class="input-group mb-4">
                   <input class="form-control" type="text" placeholder="Enter Post Title" aria-label="Enter Post Title..." name="title"/>
@@ -106,6 +93,20 @@
           </div>
       </div>
       @endif
+            <!-- Categories widget-->
+            <div class="card mb-4">
+              <div class="card-header"><a href="/categories">Categories</a></div>
+              <div class="card-body">
+                  <div class="row">
+                     @each(category in categories)
+                          <ul class="list-unstyled mb-4">
+                              <li><a href="#!">{{category.name}}</a></li>
+                          </ul>
+
+                      @endeach
+                  </div>
+              </div>
+          </div>
   </div>
 </div>
 
