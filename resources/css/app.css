@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500&display=swap');
 @import url('../fontawesome/css/fontawesome.min.css');
 
-.bg-dark{
+.bg-dark, .bg-contact{
   background-color: #34349d !important;
 }
 
@@ -22,3 +22,4 @@ a{
 .list-unstyled{
   font-weight: 600;
 }
+
