@@ -62,7 +62,7 @@
             </div>
               <label for="" class="form-label">Post Content</label>
               <div class="input-group mb-4">
-                <textarea cols="6" name="body" rows="3" class="form-control" >{{post.body}}</textarea>
+                <textarea cols="6" name="body" rows="3" class="form-control" >{{he.decode(post.body)}}</textarea>
             </div>
           <div class="input-group">
             <input type="submit" value="Update Post" class="btn btn-primary">
