@@ -1,6 +1,18 @@
 @layout('layouts.default')
 
 @section('content')
+<div class="container">
+  <div class="row">
+      <div class="col">
+          <nav aria-label="breadcrumb">
+              <ol class="breadcrumb">
+                  <li class="breadcrumb-item"><a href="/">Home</a></li>
+                  <li class="breadcrumb-item active" aria-current="page">Posts</li>
+              </ol>
+          </nav>
+      </div>
+  </div>
+</div>
 <div class="row">
   <!-- Blog entries-->
   <div class="col-lg-7">
@@ -47,17 +59,6 @@
   </div>
   <!-- Side widgets-->
   <div class="col-lg-5">
-      <!-- Search widget-->
-      {{--  <div class="card mb-4">
-          <div class="card-header">Search</div>
-          <div class="card-body">
-              <div class="input-group">
-                  <input class="form-control" type="text" placeholder="Enter search term..." aria-label="Enter search term..." aria-describedby="button-search" />
-                  <button class="btn btn-primary" id="button-search" type="button">Go!</button>
-              </div>
-          </div>
-      </div>  --}}
-
       @if (auth.user)
       <!-- Side widget-->
       <div class="card mb-4">
