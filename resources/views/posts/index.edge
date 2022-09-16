@@ -28,7 +28,7 @@
                       <div class="small text-muted">{{post.created_at}}</div>
                       <h2 class="card-title h4">{{post.title}}</h2>
                       <p class="card-text">{{ truncate(he.decode(post.body),255,'....')}}</p>
-                      <a class="btn btn-primary btn-sm" href="/posts/{{post.slug}}">Read more →</a>
+                      <a class="btn btn-primary btn-sm" href="/posts/{{post.slug}}">Read more <span data-feather="file-text"></span> </a>
                       @if(auth.user)
                       <a class="btn btn-danger btn-sm" href="/delete/{{post.id}}"><i class="fa-solid fa-trash"></i> Delete</a>
                       @endif
@@ -43,9 +43,11 @@
       <nav aria-label="Pagination">
           <hr class="my-0" />
           <ul class="pagination justify-content-center my-4">
+               <li><a href="{{ posts.page == 1 ? '#' : route('/', { page: posts.page - 1}) }}" rel="prev" class="btn btn-primary btn-sm"><span data-feather="chevrons-left"></span>Previous</a></li>
             @each(anchor in posts.getUrlsForRange(1, posts.lastPage))
               <li class="page-item" aria-current="page"><a class="page-link" href="{{ anchor.url }}">{{ anchor.page }}</a></li>
             @endeach
+            <li> <a href="{{ posts.lastPage == posts.page ? '#' : route('/', { page: posts.page + 1}) }}" class="btn btn-primary btn-sm">Next <span data-feather='chevrons-right'></span></a></li>
           </ul>
       </nav>
 
